@@ -21,4 +21,5 @@ public class BooleanType {
     public BooleanType(boolean aBoolean) {
         this.aBoolean = aBoolean;
     }
+    //holahoalhoalhao
 }
