@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cl.uchile.dcc.cc3002.ScrabbleProyect.FloatTypeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-05-27T02:37:36" hostname="LAPTOP-DE-NICO-" time="0.023">
+  <properties/>
+  <testcase name="testToString()" classname="cl.uchile.dcc.cc3002.ScrabbleProyect.FloatTypeTest" time="0.023"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

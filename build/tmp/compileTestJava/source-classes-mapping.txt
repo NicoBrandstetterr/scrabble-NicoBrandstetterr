@@ -1,0 +1,6 @@
+cl/uchile/dcc/cc3002/ScrabbleProyect/StringTypeTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.StringTypeTest
+cl/uchile/dcc/cc3002/ScrabbleProyect/IntTypeTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.IntTypeTest
+cl/uchile/dcc/cc3002/ScrabbleProyect/FloatTypeTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.FloatTypeTest
