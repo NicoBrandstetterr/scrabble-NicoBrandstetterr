@@ -9,11 +9,11 @@ public class StringType implements IOperations {
      */
     @Override
     public int hashCode(){
-        return Objects.hash(IntType.class);
+        return Objects.hash(StringType.class);
     }
     @Override
     public boolean equals(Object obj){
-        if (obj instanceof IntType){
+        if (obj instanceof StringType){
             var o = (StringType) obj;
             return o.AString == this.AString;
         }
@@ -39,8 +39,8 @@ public class StringType implements IOperations {
     }
 
 
-    public String ToString() {
-        return null;
+    public StringType ToString() {
+        return this;
     }
 
 
@@ -52,7 +52,7 @@ public class StringType implements IOperations {
 
     @Override
     public StringType AddedByString(StringType AString) {
-        return null;
+        return new StringType(AString.AString+this.AString);
     }
 
     @Override

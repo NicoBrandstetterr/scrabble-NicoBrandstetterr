@@ -1,8 +1,9 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect;
 
+
 import java.util.Objects;
 
-public class BinaryType implements ITransformationNumber,IOperations {
+public class BinaryType implements ITransformationNumber,IOperations,ILogicOperations {
     private String ABinary;
     /*
     if two objects are equals, then their hashCodes are equals
@@ -177,8 +178,234 @@ public class BinaryType implements ITransformationNumber,IOperations {
 
     @Override
     public BinaryType DividedByBinary(BinaryType ABinary) {
-        var divideIn = ABinary.ToInt().getAnInt()*this.ToInt().getAnInt();
+        var divideIn = ABinary.ToInt().getAnInt()/this.ToInt().getAnInt();
         var divide = new IntType(divideIn);
         return divide.ToBinary();
+    }
+
+    @Override
+    public ILogicOperations Conjunction(ILogicOperations integratedType) {
+        return integratedType.AndByBinary(this);
+    }
+
+    @Override
+    public ILogicOperations AndByBool(BooleanType ABoolean) {
+        if (ABoolean.getABoolean() == true){
+            return this;
+        }
+        else{
+            return new BinaryType("0");
+        }
+    }
+
+    @Override
+    public BinaryType AndByBinary(BinaryType ABinary) {
+        /*
+        * We save the length of the Binaries in variables
+         */
+        var thisLength = this.ABinary.length();
+        var otherLength = ABinary.ABinary.length();
+        /*
+        * Case where both Length are equals
+         */
+        if(thisLength==otherLength){
+            String strReturn = "";
+            int k = 0;
+            while(k<thisLength){
+                //if the elements are equal, the result element is equal, else, is equal to 0
+                if(this.getABinary().charAt(k) == ABinary.getABinary().charAt(k)){
+                    strReturn = strReturn + this.getABinary().charAt(k);
+                }
+                else{
+                    strReturn = strReturn+"0";
+                }
+                k+=1;
+            }
+            var returnBin = new BinaryType(strReturn);
+            return returnBin;
+        }
+
+        //if the function come here, means the binary length are different, so, we need to make the minor binary length turn the same length that the major.
+        String strThis = "";
+        String strOther = "";
+        var strAux = "";
+        //case where the length of the Binary that is on the right of the logic Operation is minor than the Binary on the left
+        if(thisLength<otherLength){
+            strThis = this.ABinary;
+            strAux = String.valueOf(this.ABinary.charAt(0));
+            int k = 0;
+            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
+            while(k<otherLength-thisLength){
+                strThis = strAux + strThis;
+                k+=1;
+            }
+            //now both Binaries have the same length
+            String strReturn = "";
+            k = 0;
+            BinaryType newThis = new BinaryType(strThis);
+            while(k<strThis.length()){
+                //if the elements are equal, the result element is equal, else, is equal to 0
+                if(newThis.getABinary().charAt(k) == ABinary.getABinary().charAt(k)){
+                    strReturn = strReturn + newThis.getABinary().charAt(k);
+                }
+                else{
+                    strReturn = strReturn+"0";
+                }
+                k+=1;
+            }
+            var returnBin = new BinaryType(strReturn);
+            return returnBin;
+        }
+        else{
+            int k = 0;
+            strOther = ABinary.ABinary;
+            strAux = String.valueOf(ABinary.ABinary.charAt(0));
+            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
+            while(k<thisLength-otherLength){
+                strOther = strAux + strOther;
+                k+=1;
+            }
+            //now both Binaries have the same length
+            String strReturn = "";
+            k = 0;
+            BinaryType newOther = new BinaryType(strOther);
+            while(k<strOther.length()){
+                //if the elements are equal, the result element is equal, else, is equal to 0
+                if(newOther.getABinary().charAt(k) == this.getABinary().charAt(k)){
+                    strReturn = strReturn + newOther.getABinary().charAt(k);
+                }
+                else{
+                    strReturn =strReturn+ "0";
+                }
+                k+=1;
+            }
+            var returnBin = new BinaryType(strReturn);
+            return returnBin;
+        }
+
+    }
+
+    @Override
+    public ILogicOperations Disjunction(ILogicOperations disjunctionType) {
+        return disjunctionType.OrByBinary(this);
+    }
+
+    @Override
+    public ILogicOperations OrByBool(BooleanType ABoolean) {
+        //if the boolean is true, then the result of OR operator is a binary with the same length but all the elements are 1
+        if (ABoolean.getABoolean() == true) {
+            var length = this.getABinary().length();
+            int k = 0;
+            String newBinary = "";
+            while(k<length){
+                newBinary = newBinary + 1;
+                k+=1;
+            }
+            return new BinaryType(newBinary);
+        }
+        else {
+            return this;
+        }
+    }
+
+    @Override
+    public BinaryType OrByBinary(BinaryType ABinary) {
+        /*
+         * We save the length of the Binaries in variables
+         */
+        var thisLength = this.ABinary.length();
+        var otherLength = ABinary.ABinary.length();
+        /*
+         * Case where both Length are equals
+         */
+        if (thisLength == otherLength) {
+            String strReturn = "";
+            int k = 0;
+            while (k < thisLength) {
+                //if the elements are equal, the result element is equal, else, is equal to 1
+                if (this.getABinary().charAt(k) == ABinary.getABinary().charAt(k)) {
+                    strReturn = strReturn + this.getABinary().charAt(k);
+                } else {
+                    strReturn = strReturn + "1";
+                }
+                k += 1;
+            }
+            var returnBin = new BinaryType(strReturn);
+            return returnBin;
+        }
+
+        //if the function come here, means the binary length are different, so, we need to make the minor binary length turn the same length that the major.
+        String strThis = "";
+        String strOther = "";
+        var strAux = "";
+        //case where the length of the Binary that is on the right of the logic Operation is minor than the Binary on the left
+        if (thisLength < otherLength) {
+            strThis = this.ABinary;
+            strAux = String.valueOf(this.ABinary.charAt(0));
+            int k = 0;
+            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
+            while (k < otherLength - thisLength) {
+                strThis = strAux + strThis;
+                k += 1;
+            }
+            //now both Binaries have the same length
+            String strReturn = "";
+            k = 0;
+            BinaryType newThis = new BinaryType(strThis);
+            while (k < strThis.length()) {
+                //if the elements are equal, the result element is equal, else, is equal to 1
+                if (newThis.getABinary().charAt(k) == ABinary.getABinary().charAt(k)) {
+                    strReturn = strReturn + newThis.getABinary().charAt(k);
+                } else {
+                    strReturn = strReturn + "1";
+                }
+                k += 1;
+            }
+            var returnBin = new BinaryType(strReturn);
+            return returnBin;
+        } else {
+            int k = 0;
+            strOther = ABinary.ABinary;
+            strAux = String.valueOf(ABinary.ABinary.charAt(0));
+            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
+            while (k < thisLength - otherLength) {
+                strOther = strAux + strOther;
+                k += 1;
+            }
+            //now both Binaries have the same length
+            String strReturn = "";
+            k = 0;
+            BinaryType newOther = new BinaryType(strOther);
+            while (k < strOther.length()) {
+                //if the elements are equal, the result element is equal, else, is equal to 1
+                if (newOther.getABinary().charAt(k) == this.getABinary().charAt(k)) {
+                    strReturn = strReturn + newOther.getABinary().charAt(k);
+                } else {
+                    strReturn = strReturn + "1";
+                }
+                k += 1;
+            }
+            var returnBin = new BinaryType(strReturn);
+            return returnBin;
+        }
+    }
+
+    /**
+     * @return the inverted binary number
+     */
+    @Override
+    public ILogicOperations Negation() {
+        int k = 0;
+        String binary = "";
+        while (k <= this.getABinary().length()-1) {
+            if (this.getABinary().charAt(k) == '0') {
+                binary = binary+"1";
+            }
+            else {
+                binary =binary+ "0";
+            }
+            k += 1;
+        }
+        return new BinaryType(binary);
     }
 }
