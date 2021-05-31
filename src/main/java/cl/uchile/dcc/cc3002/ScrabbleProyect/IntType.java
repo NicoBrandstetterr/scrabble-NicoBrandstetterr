@@ -69,7 +69,7 @@ public class IntType implements ITransformationNumber,IOperations {
             binary = abThis % 2 + binary;
             abThis = abThis / 2;
         }
-        //then, if thi.AnInt is positive, we use the binary String result, else we invert each binary element and add 1
+        //then, if this.AnInt is positive, we use the binary String result, else we invert each binary element and add 1
         if (this.AnInt >= 0) {
             binary = 0 + binary;
             return new BinaryType(binary);
@@ -103,14 +103,16 @@ public class IntType implements ITransformationNumber,IOperations {
             return new BinaryType(binary);
         }
     }
-
-
     @Override
     //the task of deciding how to proceed is delegated to the added type
     public IOperations Add(IOperations addedType) {
        return addedType.AddedByInt(this);
     }
 
+    /**
+     * @param AString
+     * @return
+     */
     @Override
     public StringType AddedByString(StringType AString) {
         //we use the implemented ToString Transformation

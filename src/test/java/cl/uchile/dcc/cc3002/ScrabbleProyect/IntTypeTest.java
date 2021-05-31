@@ -13,12 +13,16 @@ class IntTypeTest {
     private Random rng;
     Random RandomNumber = new Random(2000);
     int IntNumber = RandomNumber.nextInt(10000);
+    private String StringExample;
+    private BinaryType BinaryExample;
 
     @BeforeEach
     void setUp(){
         seed = new Random().nextInt();
         rng = new Random(seed);
         intExample = new IntType(IntNumber);
+        StringExample = new IntType(IntNumber).ToBinary().getABinary();
+        BinaryExample = new BinaryType(StringExample);
     }
 
     @Test
@@ -29,6 +33,7 @@ class IntTypeTest {
         assertEquals(expectedInt.hashCode(), intExample.hashCode(),"failed hashcode test");
         var differentIntNumber = new IntType(RandomValue);
         assertNotEquals(differentIntNumber, intExample);
+        assertFalse(intExample.equals(BinaryExample));
     }
     @RepeatedTest(20)
     void Set_GetTest(){
@@ -69,7 +74,6 @@ class IntTypeTest {
         assertEquals(((Object) FloatTestNumber.getADouble()).getClass().getSimpleName(), ((Object) intExample.ToFloat().getADouble()).getClass().getSimpleName());
         //test checking the classes
         assertEquals(((Object) FloatTestNumber).getClass().getSimpleName(),((Object) new FloatType(FloatTestNumber.getADouble())).getClass().getSimpleName());
-        System.out.println(((Object) FloatNumberTest).getClass().getSimpleName());
     }
     @Test
     void ToIntTest(){
@@ -80,7 +84,7 @@ class IntTypeTest {
         assertEquals(((Object) TestNumber.ToInt().getAnInt()).getClass().getSimpleName(),((Object) intExample.getAnInt()).getClass().getSimpleName());
     }
 
-    @Test
+    @RepeatedTest(20)
     void ToBinaryTest(){
         int RandomValue = rng.nextInt();;
         var TestNumber = new IntType(RandomValue);
@@ -99,12 +103,13 @@ class IntTypeTest {
         assertEquals(compValue5,new IntType(-5).ToBinary().getABinary());
         assertEquals(compValue44,new IntType(-44).ToBinary().getABinary());
         assertEquals(compValue150,new IntType(-150).ToBinary().getABinary());
+        assertEquals(new IntType(IntNumber).ToBinary().getABinary(), BinaryExample.getABinary());
     }
 
     @RepeatedTest(20)
     void AddIntTypeTest(){
         int RandomValue = rng.nextInt();
-        double DoubleTest = Math.random() * (10000 - 0) + 0;
+        double DoubleTest = Math.random() * 10000;
         var TestNumber = new IntType(RandomValue);
         var IntTest = new IntType(IntNumber);
         var FloatTestNumber = new FloatType(DoubleTest);
