@@ -1,10 +1,12 @@
-cl/uchile/dcc/cc3002/ScrabbleProyect/BinaryTypeTest.java
- cl.uchile.dcc.cc3002.ScrabbleProyect.BinaryTypeTest
 cl/uchile/dcc/cc3002/ScrabbleProyect/StringTypeTest.java
  cl.uchile.dcc.cc3002.ScrabbleProyect.StringTypeTest
-cl/uchile/dcc/cc3002/ScrabbleProyect/BooleanTypeTest.java
- cl.uchile.dcc.cc3002.ScrabbleProyect.BooleanTypeTest
-cl/uchile/dcc/cc3002/ScrabbleProyect/FloatTypeTest.java
- cl.uchile.dcc.cc3002.ScrabbleProyect.FloatTypeTest
 cl/uchile/dcc/cc3002/ScrabbleProyect/IntTypeTest.java
  cl.uchile.dcc.cc3002.ScrabbleProyect.IntTypeTest
+cl/uchile/dcc/cc3002/ScrabbleProyect/BinaryTypeTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.BinaryTypeTest
+cl/uchile/dcc/cc3002/ScrabbleProyect/FloatTypeTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.FloatTypeTest
+cl/uchile/dcc/cc3002/ScrabbleProyect/AST/AstTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.AST.AstTest
+cl/uchile/dcc/cc3002/ScrabbleProyect/BooleanTypeTest.java
+ cl.uchile.dcc.cc3002.ScrabbleProyect.BooleanTypeTest

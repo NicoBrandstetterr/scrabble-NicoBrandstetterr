@@ -1,10 +1,13 @@
-package cl.uchile.dcc.cc3002.ScrabbleProyect;
+package cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes;
 
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ILogicOperations;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.IOperations;
 
 import java.util.Objects;
 
-public class BinaryType implements ITransformationNumber,IOperations,ILogicOperations {
+public class BinaryType extends ScrabbleType {
     private String ABinary;
+
     /*
     if two objects are equals, then their hashCodes are equals
      */
@@ -27,12 +30,13 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
     }
 
     //get and set
-    public String getABinary() {
+    public String getInfo() {
         return this.ABinary;
     }
     public void setABinary(String ABinary) {
         this.ABinary = ABinary;
     }
+
     @Override
     public StringType ToString() {
         return new StringType(this.ABinary);
@@ -44,7 +48,7 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
 
     @Override
     public IntType ToInt() {
-        return new IntType(AuxToInt(this.getABinary()));
+        return new IntType(AuxToInt(this.getInfo()));
     }
 
     @Override
@@ -86,26 +90,26 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
     @Override
     public StringType AddedByString(StringType AString) {
         //we use the implemented ToString Transformation
-        var add = AString.getAString() + this.ToString().getAString();
+        var add = AString.getInfo() + this.ToString().getInfo();
         return new StringType(add);
     }
 
     @Override
     public FloatType AddedByFloat(FloatType AFloat) {
-        var add = AFloat.getADouble() + this.ToFloat().getADouble();
+        var add = AFloat.getInfo() + this.ToFloat().getInfo();
         return new FloatType(add);
     }
 
     @Override
     public IOperations AddedByInt(IntType AnInt) {
         var aux = this.ToInt();
-        var add = aux.getAnInt()+AnInt.getAnInt();
+        var add = aux.getInfo()+AnInt.getInfo();
         return new IntType(add);
     }
 
     @Override
     public BinaryType AddedByBinary(BinaryType ABinary) {
-        var addIn = ABinary.ToInt().getAnInt()+this.ToInt().getAnInt();
+        var addIn = ABinary.ToInt().getInfo()+this.ToInt().getInfo();
         var add = new IntType(addIn);
         return add.ToBinary();
     }
@@ -117,18 +121,18 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
 
     @Override
     public FloatType SubtractedByFloat(FloatType AFloat) {
-        var subtract = AFloat.getADouble() - this.ToFloat().getADouble();
+        var subtract = AFloat.getInfo() - this.ToFloat().getInfo();
         return new FloatType(subtract);
     }
     @Override
     public IOperations SubtractedByInt(IntType AnInt) {
         var aux = this.ToInt();
-        var subtract = AnInt.getAnInt()-aux.getAnInt();
+        var subtract = AnInt.getInfo()-aux.getInfo();
         return new IntType(subtract);
     }
     @Override
     public BinaryType SubtractedByBinary(BinaryType ABinary) {
-        var subtractIn = ABinary.ToInt().getAnInt()-this.ToInt().getAnInt();
+        var subtractIn = ABinary.ToInt().getInfo()-this.ToInt().getInfo();
         var subtract = new IntType(subtractIn);
         return subtract.ToBinary();
     }
@@ -140,20 +144,20 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
 
     @Override
     public FloatType MultipliedByFloat(FloatType AFloat) {
-        var multiply = AFloat.getADouble() * this.ToFloat().getADouble();
+        var multiply = AFloat.getInfo() * this.ToFloat().getInfo();
         return new FloatType(multiply);
     }
 
     @Override
     public IOperations MultipliedByInt(IntType AnInt) {
         var aux = this.ToInt();
-        var multiply = AnInt.getAnInt()*aux.getAnInt();
+        var multiply = AnInt.getInfo()*aux.getInfo();
         return new IntType(multiply);
     }
 
     @Override
     public BinaryType MultipliedByBinary(BinaryType ABinary) {
-        var multiplyIn = ABinary.ToInt().getAnInt()*this.ToInt().getAnInt();
+        var multiplyIn = ABinary.ToInt().getInfo()*this.ToInt().getInfo();
         var multiply = new IntType(multiplyIn);
         return multiply.ToBinary();
     }
@@ -165,20 +169,20 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
 
     @Override
     public FloatType DividedByFloat(FloatType AFloat) {
-        var divide = AFloat.getADouble() / this.ToFloat().getADouble();
+        var divide = AFloat.getInfo() / this.ToFloat().getInfo();
         return new FloatType(divide);
     }
 
     @Override
     public IOperations DividedByInt(IntType AnInt) {
         var aux = this.ToInt();
-        var divide = AnInt.getAnInt()/aux.getAnInt();
+        var divide = AnInt.getInfo()/aux.getInfo();
         return new IntType(divide);
     }
 
     @Override
     public BinaryType DividedByBinary(BinaryType ABinary) {
-        var divideIn = ABinary.ToInt().getAnInt()/this.ToInt().getAnInt();
+        var divideIn = ABinary.ToInt().getInfo()/this.ToInt().getInfo();
         var divide = new IntType(divideIn);
         return divide.ToBinary();
     }
@@ -190,7 +194,7 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
 
     @Override
     public ILogicOperations AndByBool(BooleanType ABoolean) {
-        if (ABoolean.getABoolean() == true){
+        if (ABoolean.getInfo() == true){
             return this;
         }
         else{
@@ -198,6 +202,20 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
         }
     }
 
+    /**
+     * @return make the minor binary length turn the same length that the major.
+     */
+    private BinaryType EqualizeBinary(BinaryType minBinary, BinaryType maxBinary){
+        var strAux = String.valueOf(minBinary.ABinary.charAt(0));
+        int k = 0;
+        String strMin = minBinary.getInfo();
+        //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
+        while(k<maxBinary.getInfo().length()-strMin.length()){
+            strMin = strAux + strMin;
+            k+=1;
+        }
+        return new BinaryType(strMin);
+    }
     @Override
     public BinaryType AndByBinary(BinaryType ABinary) {
         /*
@@ -213,8 +231,8 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
             int k = 0;
             while(k<thisLength){
                 //if the elements are equal, the result element is equal, else, is equal to 0
-                if(this.getABinary().charAt(k) == ABinary.getABinary().charAt(k)){
-                    strReturn = strReturn + this.getABinary().charAt(k);
+                if(this.getInfo().charAt(k) == ABinary.getInfo().charAt(k)){
+                    strReturn = strReturn + this.getInfo().charAt(k);
                 }
                 else{
                     strReturn = strReturn+"0";
@@ -224,67 +242,17 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
             var returnBin = new BinaryType(strReturn);
             return returnBin;
         }
-
         //if the function come here, means the binary length are different, so, we need to make the minor binary length turn the same length that the major.
-        String strThis = "";
-        String strOther = "";
-        var strAux = "";
         //case where the length of the Binary that is on the right of the logic Operation is minor than the Binary on the left
         if(thisLength<otherLength){
-            strThis = this.ABinary;
-            strAux = String.valueOf(this.ABinary.charAt(0));
-            int k = 0;
-            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
-            while(k<otherLength-thisLength){
-                strThis = strAux + strThis;
-                k+=1;
-            }
-            //now both Binaries have the same length
-            String strReturn = "";
-            k = 0;
-            BinaryType newThis = new BinaryType(strThis);
-            while(k<strThis.length()){
-                //if the elements are equal, the result element is equal, else, is equal to 0
-                if(newThis.getABinary().charAt(k) == ABinary.getABinary().charAt(k)){
-                    strReturn = strReturn + newThis.getABinary().charAt(k);
-                }
-                else{
-                    strReturn = strReturn+"0";
-                }
-                k+=1;
-            }
-            var returnBin = new BinaryType(strReturn);
-            return returnBin;
+            BinaryType BStrThis = EqualizeBinary(this,ABinary);
+            return BStrThis.AndByBinary(ABinary);
         }
         else{
-            int k = 0;
-            strOther = ABinary.ABinary;
-            strAux = String.valueOf(ABinary.ABinary.charAt(0));
-            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
-            while(k<thisLength-otherLength){
-                strOther = strAux + strOther;
-                k+=1;
-            }
-            //now both Binaries have the same length
-            String strReturn = "";
-            k = 0;
-            BinaryType newOther = new BinaryType(strOther);
-            while(k<strOther.length()){
-                //if the elements are equal, the result element is equal, else, is equal to 0
-                if(newOther.getABinary().charAt(k) == this.getABinary().charAt(k)){
-                    strReturn = strReturn + newOther.getABinary().charAt(k);
-                }
-                else{
-                    strReturn =strReturn+ "0";
-                }
-                k+=1;
-            }
-            var returnBin = new BinaryType(strReturn);
-            return returnBin;
+            BinaryType BStrOther = EqualizeBinary(ABinary,this);
+            return BStrOther.AndByBinary(this);
         }
-
     }
-
     @Override
     public ILogicOperations Disjunction(ILogicOperations disjunctionType) {
         return disjunctionType.OrByBinary(this);
@@ -293,8 +261,8 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
     @Override
     public ILogicOperations OrByBool(BooleanType ABoolean) {
         //if the boolean is true, then the result of OR operator is a binary with the same length but all the elements are 1
-        if (ABoolean.getABoolean() == true) {
-            var length = this.getABinary().length();
+        if (ABoolean.getInfo() == true) {
+            var length = this.getInfo().length();
             int k = 0;
             String newBinary = "";
             while(k<length){
@@ -323,8 +291,8 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
             int k = 0;
             while (k < thisLength) {
                 //if the elements are equal, the result element is equal, else, is equal to 1
-                if (this.getABinary().charAt(k) == ABinary.getABinary().charAt(k)) {
-                    strReturn = strReturn + this.getABinary().charAt(k);
+                if (this.getInfo().charAt(k) == ABinary.getInfo().charAt(k)) {
+                    strReturn = strReturn + this.getInfo().charAt(k);
                 } else {
                     strReturn = strReturn + "1";
                 }
@@ -335,58 +303,14 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
         }
 
         //if the function come here, means the binary length are different, so, we need to make the minor binary length turn the same length that the major.
-        String strThis = "";
-        String strOther = "";
-        var strAux = "";
         //case where the length of the Binary that is on the right of the logic Operation is minor than the Binary on the left
         if (thisLength < otherLength) {
-            strThis = this.ABinary;
-            strAux = String.valueOf(this.ABinary.charAt(0));
-            int k = 0;
-            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
-            while (k < otherLength - thisLength) {
-                strThis = strAux + strThis;
-                k += 1;
-            }
-            //now both Binaries have the same length
-            String strReturn = "";
-            k = 0;
-            BinaryType newThis = new BinaryType(strThis);
-            while (k < strThis.length()) {
-                //if the elements are equal, the result element is equal, else, is equal to 1
-                if (newThis.getABinary().charAt(k) == ABinary.getABinary().charAt(k)) {
-                    strReturn = strReturn + newThis.getABinary().charAt(k);
-                } else {
-                    strReturn = strReturn + "1";
-                }
-                k += 1;
-            }
-            var returnBin = new BinaryType(strReturn);
-            return returnBin;
-        } else {
-            int k = 0;
-            strOther = ABinary.ABinary;
-            strAux = String.valueOf(ABinary.ABinary.charAt(0));
-            //in the cycle,we add the first value of the Binary until the new Binary is equal to the another binary
-            while (k < thisLength - otherLength) {
-                strOther = strAux + strOther;
-                k += 1;
-            }
-            //now both Binaries have the same length
-            String strReturn = "";
-            k = 0;
-            BinaryType newOther = new BinaryType(strOther);
-            while (k < strOther.length()) {
-                //if the elements are equal, the result element is equal, else, is equal to 1
-                if (newOther.getABinary().charAt(k) == this.getABinary().charAt(k)) {
-                    strReturn = strReturn + newOther.getABinary().charAt(k);
-                } else {
-                    strReturn = strReturn + "1";
-                }
-                k += 1;
-            }
-            var returnBin = new BinaryType(strReturn);
-            return returnBin;
+            BinaryType BStrThis = EqualizeBinary(this,ABinary);
+            return BStrThis.OrByBinary(ABinary);
+        }
+        else {
+            BinaryType BStrOther = EqualizeBinary(ABinary,this);
+            return BStrOther.OrByBinary(this);
         }
     }
 
@@ -397,8 +321,8 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
     public ILogicOperations Negation() {
         int k = 0;
         String binary = "";
-        while (k <= this.getABinary().length()-1) {
-            if (this.getABinary().charAt(k) == '0') {
+        while (k <= this.getInfo().length()-1) {
+            if (this.getInfo().charAt(k) == '0') {
                 binary = binary+"1";
             }
             else {
@@ -407,5 +331,13 @@ public class BinaryType implements ITransformationNumber,IOperations,ILogicOpera
             k += 1;
         }
         return new BinaryType(binary);
+    }
+
+    /**
+     * @return return the value contained in the external Node else return None
+     */
+    @Override
+    public Object getNodeInfo() {
+        return this.getInfo();
     }
 }

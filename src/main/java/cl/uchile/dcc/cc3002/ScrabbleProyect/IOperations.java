@@ -1,5 +1,10 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect;
 
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.BinaryType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.FloatType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.IntType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.StringType;
+
 //We define an interface that allows define the operations between each type
 public interface IOperations {
 

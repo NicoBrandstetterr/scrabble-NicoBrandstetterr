@@ -1,8 +1,9 @@
-package cl.uchile.dcc.cc3002.ScrabbleProyect;
+package cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ILogicOperations;
 
 import java.util.Objects;
 
-public class BooleanType implements ILogicOperations {
+public class BooleanType extends ScrabbleType {
     private boolean aBoolean;
     @Override
     public int hashCode() {
@@ -23,7 +24,7 @@ public class BooleanType implements ILogicOperations {
     }
 
     //get and set
-    public boolean getABoolean() {
+    public boolean getInfo() {
         return this.aBoolean;
     }
 
@@ -51,7 +52,7 @@ public class BooleanType implements ILogicOperations {
 
     @Override
     public BinaryType AndByBinary(BinaryType ABinary) {
-        if (this.getABoolean() == true){
+        if (this.getInfo() == true){
             return ABinary;
         }
         else{
@@ -71,8 +72,8 @@ public class BooleanType implements ILogicOperations {
 
     @Override
     public BinaryType OrByBinary(BinaryType ABinary) {
-        if (this.getABoolean() == true) {
-            var length = ABinary.getABinary().length();
+        if (this.getInfo() == true) {
+            var length = ABinary.getInfo().length();
             int k = 0;
             String newBinary = "";
             while(k<length){
@@ -96,4 +97,11 @@ public class BooleanType implements ILogicOperations {
         }
     }
 
+    /**
+     * @return return the value contained in the external Node else return None
+     */
+    @Override
+    public Object getNodeInfo() {
+        return this.getInfo();
+    }
 }

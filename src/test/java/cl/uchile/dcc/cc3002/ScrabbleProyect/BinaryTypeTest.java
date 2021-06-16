@@ -1,4 +1,5 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -47,11 +48,11 @@ public class BinaryTypeTest {
         RandomValue = rng.nextInt(2000)*Sign(Aleatory);
         intTest = rng.nextInt(2000)*Sign(AleatoryTwo);
         BinaryInt = new IntType(IntNumber);
-        StringExample = BinaryInt.ToBinary().getABinary();
+        StringExample = BinaryInt.ToBinary().getInfo();
         BinaryExample = new BinaryType(StringExample);
         expectedBinary = new BinaryType(StringExample);
         RandomInt = new IntType(RandomValue);
-        RandomExample = new BinaryType(RandomInt.ToBinary().getABinary());
+        RandomExample = new BinaryType(RandomInt.ToBinary().getInfo());
         intTypeTest = new IntType(intTest);
         BinaryTestNumber = intTypeTest.ToBinary();
         DoubleNumber = Math.random() * 10000;
@@ -70,12 +71,12 @@ public class BinaryTypeTest {
 
     @RepeatedTest(20)
     void setABinary() {
-        assertEquals(RandomInt.ToBinary().getABinary(), RandomExample.getABinary(), "Values dont match. Seed: " + seed);
-        assertNotEquals(RandomExample.getABinary(), BinaryExample.getABinary(), "Values match. Seed: " + seed);
+        assertEquals(RandomInt.ToBinary().getInfo(), RandomExample.getInfo(), "Values dont match. Seed: " + seed);
+        assertNotEquals(RandomExample.getInfo(), BinaryExample.getInfo(), "Values match. Seed: " + seed);
         //we change the value of intExample to RandomValue, the differentIntNumber value
         RandomExample.setABinary(StringExample);
         //Now, we corroborate IntExample value is equals to differentIntNumber value
-        assertEquals(RandomExample.getABinary(), BinaryExample.getABinary(), "Values dont match. Seed: " + seed);
+        assertEquals(RandomExample.getInfo(), BinaryExample.getInfo(), "Values dont match. Seed: " + seed);
     }
 
     @Test
@@ -86,22 +87,22 @@ public class BinaryTypeTest {
         var StringIntExample = BinaryExample.ToString();
         assertTrue(StringTestNumber instanceof StringType, "Classes Dont Match");
         assertTrue(StringIntExample instanceof StringType, "Classes Dont Match");
-        assertEquals(StringTest.getClass().getSimpleName(),StringTestNumber.getAString().getClass().getSimpleName());
-       assertEquals(StringIntExample.getAString().getClass().getSimpleName(), StringTestNumber.getAString().getClass().getSimpleName());
+        assertEquals(StringTest.getClass().getSimpleName(),StringTestNumber.getInfo().getClass().getSimpleName());
+       assertEquals(StringIntExample.getInfo().getClass().getSimpleName(), StringTestNumber.getInfo().getClass().getSimpleName());
     }
 
     @RepeatedTest(20)
     void toFloat() {
         assertTrue(BinaryExample.ToFloat() instanceof FloatType);
         // IntNumber is the value in decimal of the BinaryExample value
-        assertEquals(IntNumber,BinaryExample.ToFloat().getADouble());
+        assertEquals(IntNumber,BinaryExample.ToFloat().getInfo());
     }
 
     @RepeatedTest(20)
     void toInt() {
         assertTrue(BinaryExample.ToInt() instanceof IntType);
         // IntNumber is the value in decimal of the BinaryExample value
-        assertEquals(IntNumber,BinaryExample.ToInt().getAnInt());
+        assertEquals(IntNumber,BinaryExample.ToInt().getInfo());
     }
 
     @RepeatedTest(20)
@@ -115,8 +116,8 @@ public class BinaryTypeTest {
         assertTrue(BinaryExample.Add(intTypeTest) instanceof BinaryType);
         assertTrue(BinaryExample.Add(BinaryTestNumber) instanceof BinaryType);
         assertEquals(BinaryExample.Add(floatExample), null);
-        assertEquals(new IntType(IntNumber + intTest).ToBinary().getABinary(), ((BinaryType) BinaryExample.Add(intTypeTest)).getABinary());
-        assertEquals(new IntType(IntNumber+intTest).ToBinary().getABinary(),((BinaryType) BinaryExample.Add(BinaryTestNumber)).getABinary());
+        assertEquals(new IntType(IntNumber + intTest).ToBinary().getInfo(), ((BinaryType) BinaryExample.Add(intTypeTest)).getInfo());
+        assertEquals(new IntType(IntNumber+intTest).ToBinary().getInfo(),((BinaryType) BinaryExample.Add(BinaryTestNumber)).getInfo());
 
     }
 
@@ -125,8 +126,8 @@ public class BinaryTypeTest {
         assertTrue(BinaryExample.Subtract(intTypeTest) instanceof BinaryType);
         assertTrue(BinaryExample.Subtract(BinaryTestNumber) instanceof BinaryType);
         assertEquals(BinaryExample.Subtract(floatExample), null);
-        assertEquals(new IntType(IntNumber - intTest).ToBinary().getABinary(), ((BinaryType) BinaryExample.Subtract(intTypeTest)).getABinary());
-        assertEquals(new IntType(IntNumber-intTest).ToBinary().getABinary(),((BinaryType) BinaryExample.Subtract(BinaryTestNumber)).getABinary());
+        assertEquals(new IntType(IntNumber - intTest).ToBinary().getInfo(), ((BinaryType) BinaryExample.Subtract(intTypeTest)).getInfo());
+        assertEquals(new IntType(IntNumber-intTest).ToBinary().getInfo(),((BinaryType) BinaryExample.Subtract(BinaryTestNumber)).getInfo());
     }
 
     @RepeatedTest(20)
@@ -134,8 +135,8 @@ public class BinaryTypeTest {
         assertTrue(BinaryExample.Multiply(intTypeTest) instanceof BinaryType);
         assertTrue(BinaryExample.Multiply(BinaryTestNumber) instanceof BinaryType);
         assertEquals(BinaryExample.Multiply(floatExample), null);
-        assertEquals(new IntType(IntNumber * intTest).ToBinary().getABinary(), ((BinaryType) BinaryExample.Multiply(intTypeTest)).getABinary());
-        assertEquals(new IntType(IntNumber*intTest).ToBinary().getABinary(),((BinaryType) BinaryExample.Multiply(BinaryTestNumber)).getABinary());
+        assertEquals(new IntType(IntNumber * intTest).ToBinary().getInfo(), ((BinaryType) BinaryExample.Multiply(intTypeTest)).getInfo());
+        assertEquals(new IntType(IntNumber*intTest).ToBinary().getInfo(),((BinaryType) BinaryExample.Multiply(BinaryTestNumber)).getInfo());
     }
 
     @RepeatedTest(20)
@@ -144,8 +145,8 @@ public class BinaryTypeTest {
         assertTrue(DBinaryExample.Divide(intTypeTest) instanceof BinaryType);
         assertTrue(DBinaryExample.Divide(BinaryTestNumber) instanceof BinaryType);
         assertEquals(DBinaryExample.Divide(floatExample), null);
-        assertEquals(new IntType(IntNumber*100 / intTest).ToBinary().getABinary(), ((BinaryType) DBinaryExample.Divide(intTypeTest)).getABinary(),"primero");
-        assertEquals(new IntType(IntNumber*100/intTest).ToBinary().getABinary(),((BinaryType) DBinaryExample.Divide(BinaryTestNumber)).getABinary(),"segundo");
+        assertEquals(new IntType(IntNumber*100 / intTest).ToBinary().getInfo(), ((BinaryType) DBinaryExample.Divide(intTypeTest)).getInfo(),"primero");
+        assertEquals(new IntType(IntNumber*100/intTest).ToBinary().getInfo(),((BinaryType) DBinaryExample.Divide(BinaryTestNumber)).getInfo(),"segundo");
     }
     @RepeatedTest(20)
     void ConjunctionBinaryTest(){
@@ -159,13 +160,13 @@ public class BinaryTypeTest {
         assertTrue(BinaryExampleVar2.Conjunction(BinaryExampleVar3) instanceof BinaryType);
         assertTrue(BinaryExample.Conjunction(TestBool) instanceof BinaryType);
         assertTrue(BinaryExample.Conjunction(BinaryTestNumber) instanceof BinaryType);
-        assertEquals("0000101",((BinaryType)BinaryExampleVar1.Conjunction(BinaryExampleVar2)).getABinary());
-        assertEquals("1110000001",((BinaryType)BinaryExampleVar3.Conjunction(BinaryExampleVar4)).getABinary());
-        assertEquals("1000001",((BinaryType) BinaryExampleVar1.Conjunction(BinaryExampleVar4)).getABinary());
-        assertEquals("0000000001",((BinaryType)BinaryExampleVar2.Conjunction(BinaryExampleVar3)).getABinary());
-        assertEquals("1110001001",((BinaryType)BinaryExampleVar1.Conjunction(BinaryExampleVar3)).getABinary());
-        assertEquals(BinaryExampleVar1.getABinary(),((BinaryType)BinaryExampleVar1.Conjunction(new BooleanType(true))).getABinary());
-        assertEquals("0",((BinaryType)BinaryExampleVar2.Conjunction(new BooleanType(false))).getABinary());
+        assertEquals("0000101",((BinaryType)BinaryExampleVar1.Conjunction(BinaryExampleVar2)).getInfo());
+        assertEquals("1110000001",((BinaryType)BinaryExampleVar3.Conjunction(BinaryExampleVar4)).getInfo());
+        assertEquals("1000001",((BinaryType) BinaryExampleVar1.Conjunction(BinaryExampleVar4)).getInfo());
+        assertEquals("0000000001",((BinaryType)BinaryExampleVar2.Conjunction(BinaryExampleVar3)).getInfo());
+        assertEquals("1110001001",((BinaryType)BinaryExampleVar1.Conjunction(BinaryExampleVar3)).getInfo());
+        assertEquals(BinaryExampleVar1.getInfo(),((BinaryType)BinaryExampleVar1.Conjunction(new BooleanType(true))).getInfo());
+        assertEquals("0",((BinaryType)BinaryExampleVar2.Conjunction(new BooleanType(false))).getInfo());
         }
     @RepeatedTest(20)
     void DisjunctionBinaryTest(){
@@ -179,13 +180,13 @@ public class BinaryTypeTest {
         assertTrue(BinaryExampleVar2.Disjunction(BinaryExampleVar3) instanceof BinaryType);
         assertTrue(BinaryExample.Disjunction(TestBool) instanceof BinaryType);
         assertTrue(BinaryExample.Disjunction(BinaryTestNumber) instanceof BinaryType);
-        assertEquals("1001101",((BinaryType)BinaryExampleVar1.Disjunction(BinaryExampleVar2)).getABinary());
-        assertEquals("1111111001",((BinaryType)BinaryExampleVar3.Disjunction(BinaryExampleVar4)).getABinary());
-        assertEquals("1101101",((BinaryType) BinaryExampleVar1.Disjunction(BinaryExampleVar4)).getABinary());
-        assertEquals("1110011101",((BinaryType)BinaryExampleVar2.Disjunction(BinaryExampleVar3)).getABinary());
-        assertEquals("1111011101",((BinaryType)BinaryExampleVar1.Disjunction(BinaryExampleVar3)).getABinary());
-        assertEquals("1111111",((BinaryType)BinaryExampleVar1.Disjunction(new BooleanType(true))).getABinary());
-        assertEquals(BinaryExampleVar2.getABinary(),((BinaryType)BinaryExampleVar2.Disjunction(new BooleanType(false))).getABinary());
+        assertEquals("1001101",((BinaryType)BinaryExampleVar1.Disjunction(BinaryExampleVar2)).getInfo());
+        assertEquals("1111111001",((BinaryType)BinaryExampleVar3.Disjunction(BinaryExampleVar4)).getInfo());
+        assertEquals("1101101",((BinaryType) BinaryExampleVar1.Disjunction(BinaryExampleVar4)).getInfo());
+        assertEquals("1110011101",((BinaryType)BinaryExampleVar2.Disjunction(BinaryExampleVar3)).getInfo());
+        assertEquals("1111011101",((BinaryType)BinaryExampleVar1.Disjunction(BinaryExampleVar3)).getInfo());
+        assertEquals("1111111",((BinaryType)BinaryExampleVar1.Disjunction(new BooleanType(true))).getInfo());
+        assertEquals(BinaryExampleVar2.getInfo(),((BinaryType)BinaryExampleVar2.Disjunction(new BooleanType(false))).getInfo());
     }
     @Test
     void NegationBinaryTest() {
@@ -197,12 +198,12 @@ public class BinaryTypeTest {
         assertTrue(BinaryExampleVar2.Negation() instanceof BinaryType);
         assertTrue(BinaryExampleVar3.Negation() instanceof BinaryType);
         assertTrue(BinaryExampleVar4.Negation() instanceof BinaryType);
-        assertEquals("0110010", ((BinaryType)BinaryExampleVar1.Negation()).getABinary());
-        assertEquals("1010",((BinaryType)BinaryExampleVar2.Negation()).getABinary());
-        assertEquals("0001100110",((BinaryType)BinaryExampleVar3.Negation()).getABinary());
-        assertEquals("0011110",((BinaryType)BinaryExampleVar4.Negation()).getABinary());
+        assertEquals("0110010", ((BinaryType)BinaryExampleVar1.Negation()).getInfo());
+        assertEquals("1010",((BinaryType)BinaryExampleVar2.Negation()).getInfo());
+        assertEquals("0001100110",((BinaryType)BinaryExampleVar3.Negation()).getInfo());
+        assertEquals("0011110",((BinaryType)BinaryExampleVar4.Negation()).getInfo());
         //test about the double negation
-        assertEquals("1110011001",((BinaryType)BinaryExampleVar3.Negation().Negation()).getABinary());
+        assertEquals("1110011001",((BinaryType)BinaryExampleVar3.Negation().Negation()).getInfo());
     }
 
 

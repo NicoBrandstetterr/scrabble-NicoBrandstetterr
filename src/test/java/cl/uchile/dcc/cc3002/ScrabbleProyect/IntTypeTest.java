@@ -1,4 +1,8 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.BinaryType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.FloatType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.IntType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.StringType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -21,7 +25,7 @@ class IntTypeTest {
         seed = new Random().nextInt();
         rng = new Random(seed);
         intExample = new IntType(IntNumber);
-        StringExample = new IntType(IntNumber).ToBinary().getABinary();
+        StringExample = new IntType(IntNumber).ToBinary().getInfo();
         BinaryExample = new BinaryType(StringExample);
     }
 
@@ -39,12 +43,12 @@ class IntTypeTest {
     void Set_GetTest(){
         int RandomValue = rng.nextInt(10000);
         var differentIntNumber = new IntType(RandomValue);
-        assertEquals(IntNumber, intExample.getAnInt(), "Values dont match. Seed: "+seed);
-        assertNotEquals(intExample.getAnInt(),differentIntNumber.getAnInt(),"Values match. Seed: "+seed);
+        assertEquals(IntNumber, intExample.getInfo(), "Values dont match. Seed: "+seed);
+        assertNotEquals(intExample.getInfo(),differentIntNumber.getInfo(),"Values match. Seed: "+seed);
         //we change the value of intExample to RandomValue, the differentIntNumber value
         intExample.setAnInt(RandomValue);
         //Now, we corroborate IntExample value is equals to differentIntNumber value
-        assertEquals(intExample.getAnInt(),differentIntNumber.getAnInt(), "Values dont match. Seed: "+seed);
+        assertEquals(intExample.getInfo(),differentIntNumber.getInfo(), "Values dont match. Seed: "+seed);
     }
 
     @RepeatedTest(20)
@@ -52,13 +56,13 @@ class IntTypeTest {
         int RandomValue = rng.nextInt(10000);
         var TestNumber = new IntType(RandomValue);
         String StringTest = "test";
-        assertNotEquals(((Object) intExample.getAnInt()).getClass().getSimpleName(), ((Object) StringTest).getClass().getSimpleName());
+        assertNotEquals(((Object) intExample.getInfo()).getClass().getSimpleName(), ((Object) StringTest).getClass().getSimpleName());
         var StringTestNumber = TestNumber.ToString();
         var StringIntExample = intExample.ToString();
         assertTrue(StringTestNumber instanceof StringType,"Classes Dont Match");
         assertTrue(StringIntExample instanceof StringType,"Classes Dont Match");
-        assertEquals(StringTestNumber.getAString().getClass().getSimpleName(),StringTest.getClass().getSimpleName());
-        assertEquals(StringIntExample.getAString().getClass().getSimpleName(),StringTestNumber.getAString().getClass().getSimpleName());
+        assertEquals(StringTestNumber.getInfo().getClass().getSimpleName(),StringTest.getClass().getSimpleName());
+        assertEquals(StringIntExample.getInfo().getClass().getSimpleName(),StringTestNumber.getInfo().getClass().getSimpleName());
     }
 
     @RepeatedTest(20)
@@ -67,13 +71,13 @@ class IntTypeTest {
         //We define a double variable in order to use it as a double type comparator.
         double FloatNumberTest = 3;
         var TestNumber = new IntType(RandomValue);
-        assertNotEquals(((Object) TestNumber.getAnInt()).getClass().getSimpleName(), ((Object) FloatNumberTest).getClass().getSimpleName());
+        assertNotEquals(((Object) TestNumber.getInfo()).getClass().getSimpleName(), ((Object) FloatNumberTest).getClass().getSimpleName());
         var FloatTestNumber = TestNumber.ToFloat();
         //test checking the types of the values
-        assertEquals(((Object) FloatTestNumber.getADouble()).getClass().getSimpleName(), ((Object) FloatNumberTest).getClass().getSimpleName());
-        assertEquals(((Object) FloatTestNumber.getADouble()).getClass().getSimpleName(), ((Object) intExample.ToFloat().getADouble()).getClass().getSimpleName());
+        assertEquals(((Object) FloatTestNumber.getInfo()).getClass().getSimpleName(), ((Object) FloatNumberTest).getClass().getSimpleName());
+        assertEquals(((Object) FloatTestNumber.getInfo()).getClass().getSimpleName(), ((Object) intExample.ToFloat().getInfo()).getClass().getSimpleName());
         //test checking the classes
-        assertEquals(((Object) FloatTestNumber).getClass().getSimpleName(),((Object) new FloatType(FloatTestNumber.getADouble())).getClass().getSimpleName());
+        assertEquals(((Object) FloatTestNumber).getClass().getSimpleName(),((Object) new FloatType(FloatTestNumber.getInfo())).getClass().getSimpleName());
     }
     @Test
     void ToIntTest(){
@@ -81,7 +85,7 @@ class IntTypeTest {
         var TestNumber = new IntType(RandomValue);
         assertTrue(TestNumber instanceof IntType);
         assertEquals(TestNumber.getClass().getSimpleName(),TestNumber.ToInt().getClass().getSimpleName());
-        assertEquals(((Object) TestNumber.ToInt().getAnInt()).getClass().getSimpleName(),((Object) intExample.getAnInt()).getClass().getSimpleName());
+        assertEquals(((Object) TestNumber.ToInt().getInfo()).getClass().getSimpleName(),((Object) intExample.getInfo()).getClass().getSimpleName());
     }
 
     @RepeatedTest(20)
@@ -96,14 +100,14 @@ class IntTypeTest {
         String compValue150 = "101101010";
         String compValue44 = "1010100";
         String compValue5 = "1011";
-        assertEquals(value5,new IntType(5).ToBinary().getABinary());
-        assertEquals(value44,new IntType(44).ToBinary().getABinary());
-        assertEquals(value150,new IntType(150).ToBinary().getABinary());
-        assertEquals(value0,new IntType(0).ToBinary().getABinary());
-        assertEquals(compValue5,new IntType(-5).ToBinary().getABinary());
-        assertEquals(compValue44,new IntType(-44).ToBinary().getABinary());
-        assertEquals(compValue150,new IntType(-150).ToBinary().getABinary());
-        assertEquals(new IntType(IntNumber).ToBinary().getABinary(), BinaryExample.getABinary());
+        assertEquals(value5,new IntType(5).ToBinary().getInfo());
+        assertEquals(value44,new IntType(44).ToBinary().getInfo());
+        assertEquals(value150,new IntType(150).ToBinary().getInfo());
+        assertEquals(value0,new IntType(0).ToBinary().getInfo());
+        assertEquals(compValue5,new IntType(-5).ToBinary().getInfo());
+        assertEquals(compValue44,new IntType(-44).ToBinary().getInfo());
+        assertEquals(compValue150,new IntType(-150).ToBinary().getInfo());
+        assertEquals(new IntType(IntNumber).ToBinary().getInfo(), BinaryExample.getInfo());
     }
 
     @RepeatedTest(20)
@@ -117,9 +121,9 @@ class IntTypeTest {
         assertTrue(TestNumber.Add(IntTest) instanceof IntType);
         assertTrue(TestNumber.Add(FloatTestNumber) instanceof FloatType);
         assertTrue(TestNumber.Add(BinaryTestNumber) instanceof IntType);
-        assertEquals(RandomValue+IntNumber,((IntType) TestNumber.Add(IntTest)).getAnInt());
-        assertEquals(RandomValue+DoubleTest,((FloatType) TestNumber.Add(FloatTestNumber)).getADouble());
-        assertEquals(RandomValue+BinaryTestNumber.ToInt().getAnInt(),((IntType) TestNumber.Add(BinaryTestNumber)).getAnInt());
+        assertEquals(RandomValue+IntNumber,((IntType) TestNumber.Add(IntTest)).getInfo());
+        assertEquals(RandomValue+DoubleTest,((FloatType) TestNumber.Add(FloatTestNumber)).getInfo());
+        assertEquals(RandomValue+BinaryTestNumber.ToInt().getInfo(),((IntType) TestNumber.Add(BinaryTestNumber)).getInfo());
     }
 
     @RepeatedTest(20)
@@ -134,9 +138,9 @@ class IntTypeTest {
         assertTrue(TestNumber.Subtract(IntTest) instanceof IntType);
         assertTrue(TestNumber.Subtract(FloatTestNumber) instanceof FloatType);
         assertTrue(TestNumber.Subtract(BinaryTestNumber) instanceof IntType);
-        assertEquals(RandomValue - IntNumbers, ((IntType) TestNumber.Subtract(IntTest)).getAnInt());
-        assertEquals(RandomValue - DoubleTest, ((FloatType) TestNumber.Subtract(FloatTestNumber)).getADouble());
-        assertEquals(RandomValue - BinaryTestNumber.ToInt().getAnInt(), ((IntType) TestNumber.Subtract(BinaryTestNumber)).getAnInt());
+        assertEquals(RandomValue - IntNumbers, ((IntType) TestNumber.Subtract(IntTest)).getInfo());
+        assertEquals(RandomValue - DoubleTest, ((FloatType) TestNumber.Subtract(FloatTestNumber)).getInfo());
+        assertEquals(RandomValue - BinaryTestNumber.ToInt().getInfo(), ((IntType) TestNumber.Subtract(BinaryTestNumber)).getInfo());
     }
 
     @RepeatedTest(20)
@@ -151,9 +155,9 @@ class IntTypeTest {
         assertTrue(TestNumber.Multiply(IntTest) instanceof IntType);
         assertTrue(TestNumber.Multiply(FloatTestNumber) instanceof FloatType);
         assertTrue(TestNumber.Multiply(BinaryTestNumber) instanceof IntType);
-        assertEquals(RandomValue * IntNumbers, ((IntType) TestNumber.Multiply(IntTest)).getAnInt());
-        assertEquals(RandomValue * DoubleTest, ((FloatType) TestNumber.Multiply(FloatTestNumber)).getADouble());
-        assertEquals(RandomValue * BinaryTestNumber.ToInt().getAnInt(), ((IntType) TestNumber.Multiply(BinaryTestNumber)).getAnInt());
+        assertEquals(RandomValue * IntNumbers, ((IntType) TestNumber.Multiply(IntTest)).getInfo());
+        assertEquals(RandomValue * DoubleTest, ((FloatType) TestNumber.Multiply(FloatTestNumber)).getInfo());
+        assertEquals(RandomValue * BinaryTestNumber.ToInt().getInfo(), ((IntType) TestNumber.Multiply(BinaryTestNumber)).getInfo());
     }
     @RepeatedTest(20)
     void DivideIntTypeTest() {
@@ -167,9 +171,9 @@ class IntTypeTest {
         assertTrue(TestNumber.Divide(IntTest) instanceof IntType);
         assertTrue(TestNumber.Divide(FloatTestNumber) instanceof FloatType);
         assertTrue(TestNumber.Divide(BinaryTestNumber) instanceof IntType);
-        assertEquals(RandomValue / IntNumbers, ((IntType) TestNumber.Divide(IntTest)).getAnInt());
-        assertEquals(RandomValue / DoubleTest, ((FloatType) TestNumber.Divide(FloatTestNumber)).getADouble());
-        assertEquals(RandomValue / BinaryTestNumber.ToInt().getAnInt(), ((IntType) TestNumber.Divide(BinaryTestNumber)).getAnInt());
+        assertEquals(RandomValue / IntNumbers, ((IntType) TestNumber.Divide(IntTest)).getInfo());
+        assertEquals(RandomValue / DoubleTest, ((FloatType) TestNumber.Divide(FloatTestNumber)).getInfo());
+        assertEquals(RandomValue / BinaryTestNumber.ToInt().getInfo(), ((IntType) TestNumber.Divide(BinaryTestNumber)).getInfo());
 
     }
 }

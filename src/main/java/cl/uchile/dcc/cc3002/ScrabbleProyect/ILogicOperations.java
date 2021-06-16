@@ -1,5 +1,8 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect;
 
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.BinaryType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.BooleanType;
+
 public interface ILogicOperations {
     /*
     Logic Conjunction

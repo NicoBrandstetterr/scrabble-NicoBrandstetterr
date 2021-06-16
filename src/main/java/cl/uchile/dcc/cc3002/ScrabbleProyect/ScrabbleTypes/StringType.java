@@ -1,8 +1,10 @@
-package cl.uchile.dcc.cc3002.ScrabbleProyect;
+package cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes;
+
+import cl.uchile.dcc.cc3002.ScrabbleProyect.IOperations;
 
 import java.util.Objects;
 
-public class StringType implements IOperations {
+public class StringType extends ScrabbleType {
     private String AString;
     /*
     if two objects are equals, then their hashCodes are equals
@@ -26,9 +28,10 @@ public class StringType implements IOperations {
     }
 
     //get and set
-    public String getAString() {
+    public String getInfo() {
         return this.AString;
     }
+
     public void setAString(String AString) {
         this.AString = AString;
     }
@@ -129,6 +132,14 @@ public class StringType implements IOperations {
     @Override
     public BinaryType DividedByBinary(BinaryType ABinary) {
         return null;
+    }
+
+    /**
+     * @return return the value contained in the external Node else return None
+     */
+    @Override
+    public Object getNodeInfo() {
+        return this.getInfo();
     }
 }
 

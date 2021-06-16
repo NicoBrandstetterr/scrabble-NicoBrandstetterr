@@ -1,4 +1,8 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.BinaryType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.FloatType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.IntType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.StringType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -43,12 +47,12 @@ class StringTypeTest {
 
     @Test
     void setAString() {
-        assertEquals(stringEx, stringExample.getAString(), "Values dont match. Seed: "+seed);
-        assertNotEquals(RandomString.getAString(),stringExample.getAString(),"Values match. Seed: "+seed);
+        assertEquals(stringEx, stringExample.getInfo(), "Values dont match. Seed: "+seed);
+        assertNotEquals(RandomString.getInfo(),stringExample.getInfo(),"Values match. Seed: "+seed);
         //we change the value of intExample to RandomValue, the differentIntNumber value
-        stringExample.setAString(RandomString.getAString());
+        stringExample.setAString(RandomString.getInfo());
         //Now, we corroborate IntExample value is equals to differentIntNumber value
-        assertEquals(stringExample.getAString(),RandomString.getAString(), "Values dont match. Seed: "+seed);
+        assertEquals(stringExample.getInfo(),RandomString.getInfo(), "Values dont match. Seed: "+seed);
 
     }
 
@@ -57,7 +61,7 @@ class StringTypeTest {
      */
     @RepeatedTest(20)
     void testToString() {
-        assertEquals(stringExample.getAString().getClass().getSimpleName(),RandomString.getAString().getClass().getSimpleName());
+        assertEquals(stringExample.getInfo().getClass().getSimpleName(),RandomString.getInfo().getClass().getSimpleName());
         assertEquals(stringExample.ToString().getClass().getSimpleName(),RandomString.getClass().getSimpleName());
 
     }
@@ -68,9 +72,9 @@ class StringTypeTest {
         assertTrue(stringExample.Add(OperationInt) instanceof StringType);
         assertTrue(stringExample.Add(OperationFloat) instanceof StringType);
         assertTrue(stringExample.Add(OperationBinary) instanceof StringType);
-        assertEquals(stringExample.getAString()+intExample, ((StringType) stringExample.Add(OperationInt)).getAString());
-        assertEquals(stringExample.getAString()+RandomValue,((StringType) stringExample.Add(OperationFloat)).getAString());
-        assertEquals(stringExample.getAString()+ OperationBinary.getABinary(), ((StringType) stringExample.Add(OperationBinary)).getAString());
+        assertEquals(stringExample.getInfo()+intExample, ((StringType) stringExample.Add(OperationInt)).getInfo());
+        assertEquals(stringExample.getInfo()+RandomValue,((StringType) stringExample.Add(OperationFloat)).getInfo());
+        assertEquals(stringExample.getInfo()+ OperationBinary.getInfo(), ((StringType) stringExample.Add(OperationBinary)).getInfo());
 
     }
     @RepeatedTest(10)
@@ -84,7 +88,7 @@ class StringTypeTest {
     @RepeatedTest(10)
     void addedByString(){
     assertTrue(stringExample.Add(RandomString) instanceof StringType);
-    assertEquals(stringExample.getAString()+RandomString.getAString(), ((StringType) stringExample.Add(RandomString)).getAString());
+    assertEquals(stringExample.getInfo()+RandomString.getInfo(), ((StringType) stringExample.Add(RandomString)).getInfo());
     }
     @RepeatedTest(10)
     void addedByBinary(){

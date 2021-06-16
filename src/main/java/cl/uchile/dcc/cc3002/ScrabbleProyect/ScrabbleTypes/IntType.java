@@ -1,8 +1,10 @@
-package cl.uchile.dcc.cc3002.ScrabbleProyect;
+package cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes;
+
+import cl.uchile.dcc.cc3002.ScrabbleProyect.IOperations;
 
 import java.util.Objects;
 
-public class IntType implements ITransformationNumber,IOperations {
+public class IntType extends ScrabbleType {
     private int AnInt;
 
     /*
@@ -28,7 +30,7 @@ public class IntType implements ITransformationNumber,IOperations {
     }
 
     //get and set
-    public int getAnInt() {
+    public int getInfo() {
         return this.AnInt;
     }
 
@@ -116,25 +118,25 @@ public class IntType implements ITransformationNumber,IOperations {
     @Override
     public StringType AddedByString(StringType AString) {
         //we use the implemented ToString Transformation
-        var add = AString.getAString() + this.ToString().getAString();
+        var add = AString.getInfo() + this.ToString().getInfo();
         return new StringType(add);
     }
 
     @Override
     public FloatType AddedByFloat(FloatType AFloat) {
-        var add = AFloat.getADouble() + this.ToFloat().getADouble();
+        var add = AFloat.getInfo() + this.ToFloat().getInfo();
         return new FloatType(add);
     }
 
     @Override
     public IOperations AddedByInt(IntType AnInt) {
-        var add = AnInt.getAnInt()+this.getAnInt();
+        var add = AnInt.getInfo()+this.getInfo();
         return new IntType(add);
     }
 
     @Override
     public BinaryType AddedByBinary(BinaryType ABinary) {
-        var add = ABinary.ToInt().getAnInt()+this.getAnInt();
+        var add = ABinary.ToInt().getInfo()+this.getInfo();
         IntType aux = new IntType(add);
         return aux.ToBinary();
     }
@@ -146,19 +148,19 @@ public class IntType implements ITransformationNumber,IOperations {
 
     @Override
     public FloatType SubtractedByFloat(FloatType AFloat) {
-        var subtract = AFloat.getADouble() - this.ToFloat().getADouble();
+        var subtract = AFloat.getInfo() - this.ToFloat().getInfo();
         return new FloatType(subtract);
     }
 
     @Override
     public IOperations SubtractedByInt(IntType AnInt) {
-        var subtract = AnInt.getAnInt()-this.getAnInt();
+        var subtract = AnInt.getInfo()-this.getInfo();
         return new IntType(subtract);
     }
 
     @Override
     public BinaryType SubtractedByBinary(BinaryType ABinary) {
-        var subtract = ABinary.ToInt().getAnInt()-this.getAnInt();
+        var subtract = ABinary.ToInt().getInfo()-this.getInfo();
         IntType aux = new IntType(subtract);
         return aux.ToBinary();
     }
@@ -171,19 +173,19 @@ public class IntType implements ITransformationNumber,IOperations {
 
     @Override
     public FloatType MultipliedByFloat(FloatType AFloat) {
-        var multiply = AFloat.getADouble() * this.ToFloat().getADouble();
+        var multiply = AFloat.getInfo() * this.ToFloat().getInfo();
         return new FloatType(multiply);
     }
 
     @Override
     public IOperations MultipliedByInt(IntType AnInt) {
-        var multiply = AnInt.getAnInt()*this.getAnInt();
+        var multiply = AnInt.getInfo()*this.getInfo();
         return new IntType(multiply);
     }
 
     @Override
     public BinaryType MultipliedByBinary(BinaryType ABinary) {
-        var multiply = ABinary.ToInt().getAnInt()*this.getAnInt();
+        var multiply = ABinary.ToInt().getInfo()*this.getInfo();
         IntType aux = new IntType(multiply);
         return aux.ToBinary();
     }
@@ -195,21 +197,29 @@ public class IntType implements ITransformationNumber,IOperations {
 
     @Override
     public FloatType DividedByFloat(FloatType AFloat) {
-        var divide = AFloat.getADouble() / this.ToFloat().getADouble();
+        var divide = AFloat.getInfo() / this.ToFloat().getInfo();
         return new FloatType(divide);
     }
 
     @Override
     public IOperations DividedByInt(IntType AnInt) {
-        int multiply = AnInt.getAnInt()/this.getAnInt();
+        int multiply = AnInt.getInfo()/this.getInfo();
         return new IntType(multiply);
     }
 
     @Override
     public BinaryType DividedByBinary(BinaryType ABinary) {
-        var divide = ABinary.ToInt().getAnInt()/this.getAnInt();
+        var divide = ABinary.ToInt().getInfo()/this.getInfo();
         IntType aux = new IntType(divide);
         return aux.ToBinary();
+    }
+
+    /**
+     * @return return the value contained in the external Node else return None
+     */
+    @Override
+    public Object getNodeInfo() {
+        return this.getInfo();
     }
 }
 
