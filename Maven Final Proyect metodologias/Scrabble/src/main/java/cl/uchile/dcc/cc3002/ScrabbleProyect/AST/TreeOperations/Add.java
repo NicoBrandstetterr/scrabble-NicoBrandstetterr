@@ -1,6 +1,11 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect.AST.TreeOperations;
 
 import cl.uchile.dcc.cc3002.ScrabbleProyect.AST.Node;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.AST.Tree;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.BinaryType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.FloatType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.IntType;
+import cl.uchile.dcc.cc3002.ScrabbleProyect.ScrabbleTypes.StringType;
 
 public class Add extends AbstractAstOperations{
     public Add (Node left, Node right){
@@ -14,5 +19,45 @@ public class Add extends AbstractAstOperations{
     @Override
     public Object getNodeInfo() {
         return "Add";
+    }
+
+    /**
+     * convert the Number in a String
+     *
+     * @return
+     */
+    @Override
+    public StringType ToString() {
+        return new Tree(new Add(left,right)).Evaluate().ToString();
+    }
+
+    /**
+     * convert the Number in a Double
+     *
+     * @return
+     */
+    @Override
+    public FloatType ToFloat() {
+        return new Tree(new Add(left,right)).Evaluate().ToFloat();
+    }
+
+    /**
+     * convert the Number in a Int
+     *
+     * @return
+     */
+    @Override
+    public IntType ToInt() {
+        return new Tree(new Add(left,right)).Evaluate().ToInt();
+    }
+
+    /**
+     * convert the Number in a Binary
+     *
+     * @return
+     */
+    @Override
+    public BinaryType ToBinary() {
+        return new Tree(new Add(left,right)).Evaluate().ToBinary();
     }
 }

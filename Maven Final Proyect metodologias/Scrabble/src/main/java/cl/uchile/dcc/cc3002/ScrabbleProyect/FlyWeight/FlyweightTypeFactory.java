@@ -48,7 +48,7 @@ public class FlyweightTypeFactory implements IFlyWeightTypeFactory{
             }
         }
         catch (TypeException e) {
-            System.out.println("Invalid Type inserted");
+            System.out.println("Invalid Type inserted "+type);
         }
         return Re;
     }

@@ -1,5 +1,6 @@
 package cl.uchile.dcc.cc3002.ScrabbleProyect.FW;
 
+import cl.uchile.dcc.cc3002.ScrabbleProyect.AST.Node;
 import cl.uchile.dcc.cc3002.ScrabbleProyect.AST.Tree;
 import cl.uchile.dcc.cc3002.ScrabbleProyect.AST.TreeOperations.*;
 import cl.uchile.dcc.cc3002.ScrabbleProyect.FlyWeight.FlyweightTypeFactory;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+import java.io.ObjectStreamClass;
+import java.util.Objects;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -58,7 +61,6 @@ public class FlyWeightTest {
         assertEquals(Tree2Expected.getInfo(), tree2.Evaluate().getNodeInfo());
         assertEquals(Tree3Expected.getInfo(), tree3.Evaluate().getNodeInfo());
         assertEquals(2.9, Math.round((((Double) treeEnunciado.Evaluate().getNodeInfo()) * 1000.0)) / 1000.0); // I Use Math.round because the Tree.Evaluate() return 2.9000003
-
     }
 
     @Test
