@@ -25,6 +25,4 @@ public abstract class AbstractAstOperations extends ScrabbleType implements Node
     public Node getRight(){
         return this.right;
     }
-
-
 }
