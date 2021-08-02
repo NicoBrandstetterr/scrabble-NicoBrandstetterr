@@ -29,3 +29,5 @@ Is VERY important consider that everything work around parenthesis, so it is ver
 
 The Operator NOT has to be applied before the expression that you want to negate. If you want to negate 
 a binary number for example, in the end of the expression you will have to add 3 parenthesis
+
+For examples of pseudocodes in the tests exist some pseudocodes.
