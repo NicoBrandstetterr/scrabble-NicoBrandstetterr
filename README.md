@@ -31,3 +31,5 @@ The Operator NOT has to be applied before the expression that you want to negate
 a binary number for example, in the end of the expression you will have to add 3 parenthesis
 
 For examples of pseudocodes in the tests exist some pseudocodes.
+
+There are many pieces of code have not been able to be properly documented based on JavaDoc because i didn´t have enough time.
